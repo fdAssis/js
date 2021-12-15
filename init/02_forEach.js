@@ -19,4 +19,4 @@ star_wars.forEach((value, index) => {
   console.log({ index: index, value: value });
 });
 
-//star_wars.forEach(print);
+star_wars.forEach(print);

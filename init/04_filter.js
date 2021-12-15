@@ -8,6 +8,7 @@ function filter_odd(n){
   return n % 2 !== 0;
 }
 
+
 let response = number.filter(filter_even);
 console.log(response)
 

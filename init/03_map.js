@@ -9,6 +9,7 @@ var mutl_3 = number.map(value => {
   return value * 3;
 })
 
+
 console.log(mutl_3)
 
 var mutl_4 = number.map(value => (value * 4))

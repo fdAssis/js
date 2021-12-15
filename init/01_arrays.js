@@ -24,6 +24,7 @@ for(let i = 0; i <= words.length; i++) {
 }
 */
 
+
 /*
   forEach -> array.forEach(callback (currentValue [, index [, array]])[,thisArg]);
   => callback = Funcao para executar em cada elemento, recebendo tres argumentos:

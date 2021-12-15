@@ -1,4 +1,4 @@
-let number = [10, 30, 40, 15]
+let array_numbers = [10, 30, 40, 15]
 
 let res = 0;
 
@@ -6,7 +6,7 @@ function sum(a, b) {
   return a + b;
 }
 
-res = number.reduce(sum);
+res = array_numbers.reduce(sum);
 /**
  * [10, 30, 40, 15]
  * 1 => 10 + 30 = 40
@@ -16,7 +16,7 @@ res = number.reduce(sum);
 
 console.log(res)
 
-res = number.filter(value => value > 15)
+res = array_numbers.filter(value => value > 15)
             .map(value => value * 0.5)
             .reduce((a, b) => a + b)
 

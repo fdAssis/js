@@ -34,5 +34,5 @@ const user = {
 console.log("String: ", String(user));
 console.log("Number: ", Number(user));
 
-// chama a conversão default!
+// chama a concersao default!
 console.log("Date: ", new Date(user));

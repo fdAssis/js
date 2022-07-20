@@ -181,14 +181,17 @@ Como o operador de `==` se comporta para diferentes tipos.
   const r = "hello" || 1; // hello
   const s = "hello" && 1; // 1
   ```
-  Um operador que não desencadeia a coerção de tipos implícita é `===`, que é chamado de operador restrito de igualdade (**strict equality operator**). O operador de igualdade `==` (**lose equality operator**) por outro lado, faz a comparação e ativa a coerção de tipos, se necessário.
+  Um operador que não desencadeia a coerção de tipos implícita é `===`, que é chamado de operador restrito de igualdade (**strict equality operator**). O operador de igualdade `==` (**loose equality operator**) por outro lado, faz a comparação e ativa a coerção de tipos, se necessário.
 - **Tipos de conversão**
   **Existem apenas 3 tipos de conversão no Javascript:**
+
   - para string;
   - para boolean;
   - para number;
-  A segunda, é que a **lógica para conversão de tipos primitivos e objetos funcionam de forma diferente**, mas ambos só podem ser convertido nessas 3 maneiras.
+    A segunda, é que a **lógica para conversão de tipos primitivos e objetos funcionam de forma diferente**, mas ambos só podem ser convertido nessas 3 maneiras.
+
   ***
+
   - **Conversão de String**
     Para indicar a conversão explícita de valores para string use a função `String()`. A coerção implícita é ativada pelo operador binário `+`, quando qualquer operando é uma string:
     ```jsx
@@ -270,8 +273,11 @@ Como o operador de `==` se comporta para diferentes tipos.
     Number(Symbol("my symbol")) + // TypeError é lançado
       Symbol("123"); // TypeError é lançado
     ```
+
   ***
+
   **Existem duas regras especiais pra relembrar:**
+
   1. Quando aplicamos `==` para `null` ou `undefined`, a conversão numérico não ocorre. `null` é apenas igual a `null` ou `undefined`, e não é igual a mais nada.
 
      ```jsx
@@ -288,12 +294,15 @@ Como o operador de `==` se comporta para diferentes tipos.
        console.log("we're dealing with NaN here");
      }
      ```
+
   ***
+
 - **Coerção de tipos para objetos**
   Quando isso ocorre com objetos, e a engine encontra expressões como `[1] + [2,3]`, primeiramente será preciso converter o objeto para um valor primitivo, que é então convertido pro tipo final. E ainda assim existem apenas três tipos de conversão: `numérico`, `string` e `booleano`.
   O caso mais simples é a conversão para booleano: qualquer valor não primitivo sempre será convertido para `true`, não importa se um objeto ou array está vazio ou não.
   Objetos são convertidos para primitivos através da função `[[ToPrimitive]]`, que é responsável pela conversão numérica e string.
   Pseudo implementação do método `[[ToPrimitive]]`:
+
   ```jsx
   function ToPrimitive(input, preferredType) {
     switch (preferredType) {

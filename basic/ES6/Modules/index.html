@@ -10,7 +10,15 @@
 
 <body>
 
-  <script type="module"></script>
+  <script type="module">
+    import Div, { soma } from './mods/math.js';
+    try {
+      alert(`Divisao: ${Div(10, 2)}`);
+      alert(`Soma: ${soma(10, 2)}`);
+    } catch (error) {
+      alert(error);
+    }
+  </script>
 </body>
 
 </html>

@@ -6,6 +6,9 @@
 
 Javascript é uma linguagem dinâmica e que não foi planejada pras dimensões em que é usada hoje em dia. Então ela tem alguns _probleminhas_. Por exemplo a declaração de variáveis, se você utilizar uma variável sem `var` antes, ela se tornará uma variável global, então pode estar sobrescrevendo um valor que pode estar sendo usado por alguma outra função em algum outro lugar. Esse tipo de coisa causa erros que são muito difíceis de encontrar.
 
+<details>
+<summary>detalhes</summary>
+
 Esse tipo de comportamento é "natural" da linguagem e quebraria um monte de bibliotecas existentes caso fosse tirado da linguagem agora.
 
 O **\*"use strict**"\* serve pra tentar amenizar esses problemas, navegadores que reconhecem essa diretiva vão emitir erros quando encontram código que é javascript válido mas que é potencialmente problemático, como o caso de usar variáveis sem declarar com var. Navegadores antigos que não reconhecem simplesmente ignoram a diretiva.
@@ -19,7 +22,8 @@ Existem duas maneiras de se utilizar o `"use strict"`:
 
 O grande benefício de se o usar _strict mode_ é reduzir a chance de existirem no código bugs difíceis de localizar (como um conflito de nome ao se criar uma global implícita, ou a existência de duas chaves iguais em objeto literal).
 
-### Restrições existentes no strict mode
+<details>
+<summary>Restrições existentes no strict mode</summary>
 
 - Os identificadores `implements`, `interface`, `let`, `package`, `private`, `protected`, `public`, `static`, e `yield` são palavras reservadas quando utilizados no strict mode.
 - Literais numéricos nunca são considerados octais, nem mesmo quando começam com zero. O mesmo vale para octais escapados em strings, como `'\012'` (que os browsers modernos nem suportam mais, mesmo fora do strict mode)
@@ -41,12 +45,17 @@ O grande benefício de se o usar _strict mode_ é reduzir a chance de existirem 
 - Funções não podem ter múltiplos parâmetros com o mesmo nome; isso é um SyntaxError.
 - É proibido às implementações estenderem o significado das propriedades "caller" e "arguments" de instâncias de funções para além do que consta da especificação.
 - É um SyntaxError tentar utilizar "eval" ou "arguments" como nome de função ou parâmetro, assim como tentar forçar isso por meio do construtor `Function`.
+</details>
+</details>
 
 ## call stack e memory heap
 
 Em background o JS tem que guardar e escrever informações novas e manter o histórico do que acontecerá em cada linha de código e é exatamente para isso que o JS possui essas duas ferramentas: Call Stack e Memory Heap.
 
 [Memory Stack and Heap](https://www.notion.so/Memory-Stack-and-Heap-1d7d8fd0a9fa4ddea3030a40a2d66618)
+
+<details>
+<summary>detalhes</summary>
 
 ### Memória do Javascript
 
@@ -64,24 +73,30 @@ console.log(num2);
 3. Ao mudar o valor de *num1,* o JS alocou um novo endereço na memória e guardou o valor da soma que é 3 neste mesmo endereço. Isso sempre ocorrerá pois no *JavaScript* os tipos de dados primitivos (_`boolean`_, *`bigint`*, *`number`*, *`string`*, *`symbol`* e *`undefined`*) são imutáveis!
 
 - **Call Stack And Memory Heap**
-  É basicamente juntar todas as chamadas em uma só (ou funções). É exatamente aqui que os dados primitivos são salvos em memória!
-  O call stack junta todas as chamadas das funções usando um conceito de: **FILO (first in last out)**. Sendo assim, ele adiciona a chamada da função no topo da pilha, executa e depois remove quando todo o código rodar.
-  O **Call Stack** é o lugar que todos os dados primitivos são salvos. Logo, o **Memory Heap** é onde todos os dados não primitivos são salvos!
-  A grande diferença entre eles é que a ferramenta de memory heap consegue guardar dados desordenadamente e que podem crescer dinamicamente, como arrays e objetos.
+É basicamente juntar todas as chamadas em uma só (ou funções). É exatamente aqui que os dados primitivos são salvos em memória!
+O call stack junta todas as chamadas das funções usando um conceito de: **FILO (first in last out)**. Sendo assim, ele adiciona a chamada da função no topo da pilha, executa e depois remove quando todo o código rodar.
+O **Call Stack** é o lugar que todos os dados primitivos são salvos. Logo, o **Memory Heap** é onde todos os dados não primitivos são salvos!
+A grande diferença entre eles é que a ferramenta de memory heap consegue guardar dados desordenadamente e que podem crescer dinamicamente, como arrays e objetos.
+</details>
 
 ## tipos valor e tipos referência
 
 Quando você armazena um valor em uma variável, esse valor tem um tipo. **O tipo de um dado valor nunca muda, mas o valor guardado numa variável pode ser trocado**. Qualquer variável pode conter um valor de qualquer tipo, a qualquer momento, e por isso não faz sentido declarar o tipo da variável. O tipo é uma característica dos valores, e as variáveis são agnósticas quanto a eles. **Em outras palavras, as variáveis não são amarradas a nenhum tipo, mas sempre contêm valores que pertencem a algum dos tipos disponíveis.**
 
-### **Os Tipos**
+<details>
+<summary>detalhes</summary>
 
-Cinco dos seis tipos em JavaScript têm valores primitivos: `Undefined`, `Null`, `Boolean`, `String` e `Number`. Valores primitivos como _undefined_, _null_, _true_, _"texto"_ e _10_ são imutáveis. `Undefined` e `Null` são tipos especiais que possuem um só valor cada, respectivamente _undefined_ e _null._
+  <details>
+    <summary>Os Tipos</summary>
+    Cinco dos seis tipos em JavaScript têm valores primitivos: `Undefined`, `Null`, `Boolean`, `String` e `Number`. Valores primitivos como _undefined_, _null_, _true_, _"texto"_ e _10_ são imutáveis. `Undefined` e `Null` são tipos especiais que possuem um só valor cada, respectivamente _undefined_ e _null._
 
-O sexto tipo é `Object`, que inclui `arrays`, `funções` e outros. Objetos são conjuntos de propriedades, que podem guardar valores de qualquer um dos tipos já citados. Propriedades podem ser acrescentadas a um objeto ou removidas dele a qualquer momento, e valores de propriedades também podem ser alterados. Portanto, objetos são mutáveis.
+    O sexto tipo é `Object`, que inclui `arrays`, `funções` e outros. Objetos são conjuntos de propriedades, que podem guardar valores de qualquer um dos tipos já citados. Propriedades podem ser acrescentadas a um objeto ou removidas dele a qualquer momento, e valores de propriedades também podem ser alterados. Portanto, objetos são mutáveis.
 
-### **Valor *versus* referência**
+  </details>
 
-Pode-se considerar que os tipos primitivos do JavaScript funcionam como os _value types_, enquanto que os objetos funcionam como os _reference types_.
+<details>
+  <summary>Valor vs referência</summary>
+  Pode-se considerar que os tipos primitivos do JavaScript funcionam como os _value types_, enquanto que os objetos funcionam como os _reference types_.
 
 Exemplo:
 
@@ -112,8 +127,8 @@ Esse mesmo conceito também serve para entender como os objetos são passados pa
 
 ```jsx
 function teste(obj){
-	obj.novaProp = "foo";'    // O objeto fora da função é afetado
-	obj = {outraProp: "bar"}; // O objeto fora da função não é afetado
+  obj.novaProp = "foo";'    // O objeto fora da função é afetado
+  obj = {outraProp: "bar"}; // O objeto fora da função não é afetado
 }
 
 var o = {};
@@ -128,16 +143,23 @@ Isso quer dizer que em JavaScript **não existe passagem "por referência"**. O 
 
 Ao programar em JavaScript, tenha em mente que o acesso à memória fica a cargo do interpretador da linguagem. Não se manipula a memória diretamente em JavaScript. A especificação da linguagem sequer menciona como a memória deve ser tratada, isso fica integralmente a cargo da implementação. Por isso não é possível dizer onde cada dado fica armazenado sem conhecer bem como cada interpretador funciona.
 
-**Uso de memória pelo JavaScript:**
+</details>
 
-- Existe um [garbage collector](https://www.notion.so/garbage-collector-376c62e3e7634dd1859610264cd179e9)  nos *engines* de JavaScript
+<details>
+<summary>Uso de memória pelo JavaScript</summary>
+
+- Existe um garbage collector nos *engines* de JavaScript
 - Esse *garbage collector* é executado em momentos arbitrários (geralmente quando o interpretador não está ocupado com o seu código)
 - O *garbage collector* só liberar a memória ocupada por um objeto se não houver nenhuma referência "viva" a esse objeto.
 - Cuidado com objetos capturados em *closures*, eles podem acabar ocupando memória eternamente!
+</details>
+
+</details>
 
 ## coerção de tipos e objects lifecycle
 
-### wtf Javascript
+<details>
+<summary>wtf Javascript</summary>
 
 [wtfjs - a little code blog about that language we love despite giving us so much to hate](https://wtfjs.com/)
 
@@ -161,17 +183,19 @@ true + 2; // 3
 "B" + "a" + +"a" + "a"; // BaNaNa
 ```
 
-### coerção de tipos (type coercion)
+</details>
 
+<details>
+<summary>coerção de tipos (type coercion)</summary>
 É o processo de conversão de um valor de um tipo, para outro ( como a conversão de uma string para um número, um objeto para um booleano e etc.) Qualquer tipo, seja primitivo ou um objeto, é um sujeito válido para coerção de tipo.
 
 ![Como o operador de `==` se comporta para diferentes tipos.](https://i.stack.imgur.com/35MpY.png)
 
 Como o operador de `==` se comporta para diferentes tipos.
 
----
-
-- **Coerção Implícita vs Explícita**
+<details>
+<summary>Coerção Implícita vs Explícita</summary>
+  
   Quando se deseja converter um tipo escrevendo algo como, `Number(valor)`, é chamado de **coerção de tipos explícita ( explicit type coercion ou type casting).**
   Javascript é uma linguagem fracamente tipada (weakly-typed-language), valores também podem ser convertidos entre diferentes tipos automaticamente, e isso é chamado de **coerção de tipos implícita (implicit type coercion).** Isso acontece quando se atribui operados para valores de diferentes tipos, como `1 == null`, `2/'5'`, `null + new Date()`, ou isso pode decorrer de contexto, como usar `if (value) {...}` onde `value` é forçado a retornar um booleano.
   Operadores lógicos como `||` e `&&`  fazem conversões booleanas internamente, mas [na verdade retornam o valor dos operandos](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Logical_operators) originais, mesmo que eles não sejam booleanos.
@@ -182,154 +206,180 @@ Como o operador de `==` se comporta para diferentes tipos.
   const s = "hello" && 1; // 1
   ```
   Um operador que não desencadeia a coerção de tipos implícita é `===`, que é chamado de operador restrito de igualdade (**strict equality operator**). O operador de igualdade `==` (**loose equality operator**) por outro lado, faz a comparação e ativa a coerção de tipos, se necessário.
-- **Tipos de conversão**
-  **Existem apenas 3 tipos de conversão no Javascript:**
+  - **Tipos de conversão**
+    **Existem apenas 3 tipos de conversão no Javascript:**
 
-  - para string;
-  - para boolean;
-  - para number;
-    A segunda, é que a **lógica para conversão de tipos primitivos e objetos funcionam de forma diferente**, mas ambos só podem ser convertido nessas 3 maneiras.
+- para string;
+- para boolean;
+- para number;
+  A segunda, é que a **lógica para conversão de tipos primitivos e objetos funcionam de forma diferente**, mas ambos só podem ser convertido nessas 3 maneiras.
 
-  ***
-
-  - **Conversão de String**
-    Para indicar a conversão explícita de valores para string use a função `String()`. A coerção implícita é ativada pelo operador binário `+`, quando qualquer operando é uma string:
-    ```jsx
-    String(123); // explícito
-    123 + ""; // implícito
-    ```
-    Todos os valores primitivos são convertidos em string naturalmente:
-    ```jsx
-    String(123); // '123'
-    String(-12.3); // '-12.3'
-    String(null); // 'null'
-    String(undefined); // 'undefined'
-    String(true); // 'true'
-    String(false); // 'false'
-    ```
-    A conversão de `Symbol` é um pouco complicada, porque só pode ser convertida explicitamente, mas não implicitamente.
-    ```jsx
-    String(Symbol("my symbol")); // 'Symbol(my symbol)'
-    "" + Symbol("my symbol"); // TypeError é lançado
-    ```
-  - **Conversão de Boolean**
-    Para indicar a conversão explícita de valores para boolean use a função `Boolean()`. A conversão implícita ocorre no contexto lógico ou é ativada por operadores lógicos (`||` ,`&&` ,`!`) .
-    ```jsx
-    Boolean(2)          // explícito
-    if (2) { ... }      // implícito devido ao contexto lógico
-    !!2                 // implícito devido ao operador lógico
-    2 || 'hello'        // implícito devido ao operador lógico
-    ```
-    Assim que houver apenas dois resultados possíveis da conversão booleana: `true`ou `false`, é mais fácil lembrar a lista de valores falsos (false values).
-    ```jsx
-    Boolean(""); // false
-    Boolean(0); // false
-    Boolean(-0); // false
-    Boolean(NaN); // false
-    Boolean(null); // false
-    Boolean(undefined); // false
-    Boolean(false); // false
-    ```
-    Qualquer valor não inserido nessa lista ao ser convertido será `true`, incluindo objetos, funções, `Array`, `Date`, tipos definidos pelo usuário e assim por diante. Symbols são considerados como valores verdadeiros (truthy values). Objetos vazios e arrays também:
-    ```jsx
-    Boolean({}); // true
-    Boolean([]); // true
-    Boolean(Symbol()); // true
-    !!Symbol(); // true
-    Boolean(function () {}); // true
-    ```
-  - **Conversão Numérica**
-    Para uma conversão explícita aplique a função `Number()`, assim como feito com `Boolean()` e `String()`.
-    A conversão implícita é complicada, pois é acionada em mais casos:
-    - operadores de comparação (comparison operators)(`>`, `<`, `<=`,`>=`)
-    - operadores bitwise ( `|` `&` `^` `~`)
-    - operadores aritméticos (`-` `+` `*` `/` `%` ). Saiba que usar `+` não irá ativar a conversão numérica quando qualquer operando for uma string.
-    - operador unário`+`
-    - operador de igualdade `==` (incl. `!=`).Perceba que `==` não ativa a conversão numérica quando ambos operandos são strings.
-    ```jsx
-    Number("123") + // explícito
-      "123"; // implícito
-    123 != "456"; // implícito
-    4 > "5"; // implícito
-    5 / null; // implícito
-    true | 0; // implícito
-    ```
-    Como valores primitivos são convertido para números:
-    ```jsx
-    Number(null); // 0
-    Number(undefined); // NaN
-    Number(true); // 1
-    Number(false); // 0
-    Number(" 12 "); // 12
-    Number("-12.34"); // -12.34
-    Number("\n"); // 0
-    Number(" 12s "); // NaN
-    Number(123); // 123
-    ```
-    Ao converter uma string em número, a engine primeiro remove os espaços em branco com os caracteres `\n` e `\t`, retornando `NaN` se a string tratada não representar um número válido. Se a string estiver vazia, retornará `0`.
-    `null` e `undefined` são tratados de forma diferentes: `null` vira 0, enquanto `undefined` se torna `NaN`.
-    Symbols não podem ser convertidos em números nem explicitamente nem implicitamente. Além disso, `TypeError` é lançado ao invés de silenciosamente converter para `NaN`, como acontece para `undefined`.
-    ```jsx
-    Number(Symbol("my symbol")) + // TypeError é lançado
-      Symbol("123"); // TypeError é lançado
-    ```
-
-  ***
-
-  **Existem duas regras especiais pra relembrar:**
-
-  1. Quando aplicamos `==` para `null` ou `undefined`, a conversão numérico não ocorre. `null` é apenas igual a `null` ou `undefined`, e não é igual a mais nada.
-
-     ```jsx
-     null == 0; // false, null is not converted to 0
-     null == null; // true
-     undefined == undefined; // true
-     null == undefined; // true
-     ```
-
-  2. `NaN`não é igual a nada, nem a ele mesmo:
-
-     ```jsx
-     if (value !== value) {
-       console.log("we're dealing with NaN here");
-     }
-     ```
-
-  ***
-
-- **Coerção de tipos para objetos**
-  Quando isso ocorre com objetos, e a engine encontra expressões como `[1] + [2,3]`, primeiramente será preciso converter o objeto para um valor primitivo, que é então convertido pro tipo final. E ainda assim existem apenas três tipos de conversão: `numérico`, `string` e `booleano`.
-  O caso mais simples é a conversão para booleano: qualquer valor não primitivo sempre será convertido para `true`, não importa se um objeto ou array está vazio ou não.
-  Objetos são convertidos para primitivos através da função `[[ToPrimitive]]`, que é responsável pela conversão numérica e string.
-  Pseudo implementação do método `[[ToPrimitive]]`:
-
+<details>
+<summary>Conversão de String</summary>
+  
+  Para indicar a conversão explícita de valores para string use a função `String()`. A coerção implícita é ativada pelo operador binário `+`, quando qualquer operando é uma string:
   ```jsx
-  function ToPrimitive(input, preferredType) {
-    switch (preferredType) {
-      case Number:
-        return toNumber(input);
-        break;
-      case String:
-        return toString(input);
-        break;
-      default:
-        return toNumber(input);
-    }
-
-    function isPrimitive(value) {
-      return value !== Object(value);
-    }
-
-    function toString() {
-      if (isPrimitive(input.toString())) return input.toString();
-      if (isPrimitive(input.valueOf())) return input.valueOf();
-      throw new TypeError();
-    }
-
-    function toNumber() {
-      if (isPrimitive(input.valueOf())) return input.valueOf();
-      if (isPrimitive(input.toString())) return input.toString();
-      throw new TypeError();
-    }
-  }
+  String(123); // explícito
+  123 + ""; // implícito
   ```
+  Todos os valores primitivos são convertidos em string naturalmente:
+  ```jsx
+  String(123); // '123'
+  String(-12.3); // '-12.3'
+  String(null); // 'null'
+  String(undefined); // 'undefined'
+  String(true); // 'true'
+  String(false); // 'false'
+  ```
+  A conversão de `Symbol` é um pouco complicada, porque só pode ser convertida explicitamente, mas não implicitamente.
+  ```jsx
+  String(Symbol("my symbol")); // 'Symbol(my symbol)'
+  "" + Symbol("my symbol"); // TypeError é lançado
+  ```
+</details>
+
+<details>
+<summary>Conversão de Boolean</summary>
+
+Para indicar a conversão explícita de valores para boolean use a função `Boolean()`. A conversão implícita ocorre no contexto lógico ou é ativada por operadores lógicos (`||` ,`&&` ,`!`) .
+
+```jsx
+Boolean(2)          // explícito
+if (2) { ... }      // implícito devido ao contexto lógico
+!!2                 // implícito devido ao operador lógico
+2 || 'hello'        // implícito devido ao operador lógico
+```
+
+Assim que houver apenas dois resultados possíveis da conversão booleana: `true`ou `false`, é mais fácil lembrar a lista de valores falsos (false values).
+
+```jsx
+Boolean(""); // false
+Boolean(0); // false
+Boolean(-0); // false
+Boolean(NaN); // false
+Boolean(null); // false
+Boolean(undefined); // false
+Boolean(false); // false
+```
+
+Qualquer valor não inserido nessa lista ao ser convertido será `true`, incluindo objetos, funções, `Array`, `Date`, tipos definidos pelo usuário e assim por diante. Symbols são considerados como valores verdadeiros (truthy values). Objetos vazios e arrays também:
+
+```jsx
+Boolean({}); // true
+Boolean([]); // true
+Boolean(Symbol()); // true
+!!Symbol(); // true
+Boolean(function () {}); // true
+```
+
+</details>
+
+<details>
+<summary>Conversão Numérica</summary>
+
+Para uma conversão explícita aplique a função `Number()`, assim como feito com `Boolean()` e `String()`.
+A conversão implícita é complicada, pois é acionada em mais casos:
+
+- operadores de comparação (comparison operators)(`>`, `<`, `<=`,`>=`)
+- operadores bitwise ( `|` `&` `^` `~`)
+- operadores aritméticos (`-` `+` `*` `/` `%` ). Saiba que usar `+` não irá ativar a conversão numérica quando qualquer operando for uma string.
+- operador unário`+`
+- operador de igualdade `==` (incl. `!=`).Perceba que `==` não ativa a conversão numérica quando ambos operandos são strings.
+
+```jsx
+Number("123") + // explícito
+  "123"; // implícito
+123 != "456"; // implícito
+4 > "5"; // implícito
+5 / null; // implícito
+true | 0; // implícito
+```
+
+Como valores primitivos são convertido para números:
+
+```jsx
+Number(null); // 0
+Number(undefined); // NaN
+Number(true); // 1
+Number(false); // 0
+Number(" 12 "); // 12
+Number("-12.34"); // -12.34
+Number("\n"); // 0
+Number(" 12s "); // NaN
+Number(123); // 123
+```
+
+Ao converter uma string em número, a engine primeiro remove os espaços em branco com os caracteres `\n` e `\t`, retornando `NaN` se a string tratada não representar um número válido. Se a string estiver vazia, retornará `0`.
+`null` e `undefined` são tratados de forma diferentes: `null` vira 0, enquanto `undefined` se torna `NaN`.
+Symbols não podem ser convertidos em números nem explicitamente nem implicitamente. Além disso, `TypeError` é lançado ao invés de silenciosamente converter para `NaN`, como acontece para `undefined`.
+
+```jsx
+Number(Symbol("my symbol")) + // TypeError é lançado
+  Symbol("123"); // TypeError é lançado
+```
+
+</details>
+
+**Existem duas regras especiais pra relembrar:**
+
+1. Quando aplicamos `==` para `null` ou `undefined`, a conversão numérico não ocorre. `null` é apenas igual a `null` ou `undefined`, e não é igual a mais nada.
+
+   ```jsx
+   null == 0; // false, null is not converted to 0
+   null == null; // true
+   undefined == undefined; // true
+   null == undefined; // true
+   ```
+
+2. `NaN`não é igual a nada, nem a ele mesmo:
+
+   ```jsx
+   if (value !== value) {
+     console.log("we're dealing with NaN here");
+   }
+   ```
+
+---
+
+<details>
+<summary>Coerção de tipos para objetos</summary>
+
+Quando isso ocorre com objetos, e a engine encontra expressões como `[1] + [2,3]`, primeiramente será preciso converter o objeto para um valor primitivo, que é então convertido pro tipo final. E ainda assim existem apenas três tipos de conversão: `numérico`, `string` e `booleano`.
+O caso mais simples é a conversão para booleano: qualquer valor não primitivo sempre será convertido para `true`, não importa se um objeto ou array está vazio ou não.
+Objetos são convertidos para primitivos através da função `[[ToPrimitive]]`, que é responsável pela conversão numérica e string.
+Pseudo implementação do método `[[ToPrimitive]]`:
+
+```jsx
+function ToPrimitive(input, preferredType) {
+  switch (preferredType) {
+    case Number:
+      return toNumber(input);
+      break;
+    case String:
+      return toString(input);
+      break;
+    default:
+      return toNumber(input);
+  }
+
+  function isPrimitive(value) {
+    return value !== Object(value);
+  }
+
+  function toString() {
+    if (isPrimitive(input.toString())) return input.toString();
+    if (isPrimitive(input.valueOf())) return input.valueOf();
+    throw new TypeError();
+  }
+
+  function toNumber() {
+    if (isPrimitive(input.valueOf())) return input.valueOf();
+    if (isPrimitive(input.toString())) return input.toString();
+    throw new TypeError();
+  }
+}
+```
+
+</details>
+
+</details>

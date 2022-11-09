@@ -2,7 +2,7 @@ const products = [
   {
     id: "123",
     name: "Produto 1",
-    price: 3432,
+    price: 10,
     description:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et harum est consequatur accusamus quis, numquam inventore aspernatur",
     img: "http://lorempixel.com.br/500/800",
@@ -66,7 +66,6 @@ function html_car(product) {
       <div>
         <h3 class="text-sm text-gray-700">
           <a href="#">
-            <span aria-hidden="true" class="absolute inset-0"></span>
             ${product.name}
           </a>
         </h3>
@@ -78,8 +77,8 @@ function html_car(product) {
         product.price * product.quantity
       }</p>
     </div>
-    <button
-      class="bg-red-600 rounded-lg w-full h-10 text-white font-bold mt-2 hover:bg-red-700">Remover</button>
+    <button data-index=${product.id}
+      class="remove-btn bg-red-600 rounded-lg w-full h-10 text-white font-bold mt-2 hover:bg-red-700">Remover</button>
   </div>
   
   `;
@@ -94,6 +93,22 @@ function render_car() {
   document.querySelector(".car").innerHTML = outcome_html;
 }
 
+function render_car_total() {
+  total = 0;
+  for (const [_, value] of Object.entries(item_carrinho)) {
+    total += value.quantity * value.price;
+  }
+
+  document.querySelector(
+    ".total-car"
+  ).innerHTML = `<h3 class="mt-3 font-bold">Total: R$${total}</h3>`;
+}
+
+function add_car(product) {
+  item_carrinho[product.id] = product;
+  item_carrinho[product.id].quantity = 0;
+}
+
 document.body.addEventListener("click", function (event) {
   const element = event.target;
 
@@ -102,11 +117,24 @@ document.body.addEventListener("click", function (event) {
     const product = products[product_index];
 
     if (!item_carrinho[product.id]) {
-      item_carrinho[product.id] = product;
-      item_carrinho[product.id].quantity = 1;
+      add_car(product);
+    }
+    ++item_carrinho[product.id].quantity;
+
+    render_car();
+    render_car_total();
+  }
+
+  if (element.classList.contains("remove-btn")) {
+    const product_id = parseInt(element.getAttribute("data-index"));
+    if (item_carrinho[product_id].quantity <= 1) {
+      delete item_carrinho[product_id];
+    } else {
+      --item_carrinho[product_id].quantity;
     }
 
     render_car();
+    render_car_total();
   }
 });
 
